@@ -1,63 +1,190 @@
 package aoc;
 
-import java.util.Scanner;
-
 import aoc.common.Day;
 
+import java.util.Scanner;
+
 public class Main {
-  public static void main(String[] args) {
-    Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    String yearInput = getUserInput(scanner, "Enter year (####): ");
-    String dayInput = getUserInput(scanner, "Enter day (##): ");
-    String partInput = getUserInput(scanner, "Enter part (1, 2, or leave blank for both): ");
+    // ANSI color codes
+    private static final String RESET = "\u001B[0m";
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+    private static final String BLUE = "\u001B[34m";
 
-    String filePath = constructFilePath(yearInput, dayInput);
-    executeDaySolution(yearInput, dayInput, partInput, filePath);
+    public static void main(String[] args) {
+        printChristmasTree();
 
-    scanner.close();
-  }
+        boolean isDevMode = isDevMode();
 
-  private static String getUserInput(Scanner scanner, String prompt) {
-    System.out.print(prompt);
-    return scanner.nextLine().trim();
-  }
-
-  private static String constructFilePath(String year, String day) {
-    return "input/year" + year + "/real/Day" + day + ".txt";
-  }
-  private static void executeDaySolution(String year, String day, String part, String filePath) {
-    try {
-      String className = constructClassName(year, day);
-      Day dayInstance = createDayInstance(className);
-
-      if ("1".equals(part)) {
-        printPartSolution(part, dayInstance.solvePart1(filePath));
-      } else if ("2".equals(part)) {
-        printPartSolution(part, dayInstance.solvePart2(filePath));
-      } else {
-        printPartSolution("1", dayInstance.solvePart1(filePath));
-        printPartSolution("2", dayInstance.solvePart2(filePath));
-      }
-
-    } catch (ClassNotFoundException e) {
-      System.err.println("Class not found: " + e.getMessage());
-    } catch (Exception e) {
-      System.err.println("Error creating instance: " + e.getMessage());
+        if (isDevMode) {
+            devMode();
+        } else {
+            visitorMode();
+        }
     }
-  }
 
-  private static String constructClassName(String year, String day) {
-    return "aoc.year" + year + ".Day" + day;
-  }
+    private static void printChristmasTree() {
+        System.out.println(GREEN +
+                "        *        " + RESET + RED + "   ~ Advent of Code ~" + RESET);
+        System.out.println(GREEN +
+                "       ***       ");
+        System.out.println("      *****      ");
+        System.out.println("     *******     ");
+        System.out.println("    *********    ");
+        System.out.println("       ***       ");
+        System.out.println(RED +
+                "       ***       " + RESET + GREEN + "   Merry Coding!" + RESET);
+        System.out.println();
+    }
 
-  private static Day createDayInstance(String className) throws Exception {
-    Class<?> dayClass = Class.forName(className);
-    return (Day)dayClass.getDeclaredConstructor().newInstance();
-  }
+    private static boolean isDevMode() {
+        System.out.print(GREEN + "Are you Feli? " + RED + "(yes/no): " + RESET + BLUE);
+        String response = scanner.nextLine().trim().toLowerCase();
+        System.out.print(RESET);
+        return response.equals("yes") || response.equals("y");
+    }
 
-  private static void printPartSolution(String part, String result) {
-    System.out.println("Part " + part + " Solution: " + result);
-    System.out.println();
-  }
+    private static void devMode() {
+        System.out.println(GREEN + "Dev-Mode activated! 🎄" + RESET);
+        boolean running = true;
+
+        while (running) {
+            System.out.println(RED + "1: Fetch new puzzle input" + RESET);
+            System.out.println(RED + "2: Quit" + RESET);
+            System.out.print(GREEN + "Select an option: " + RESET + BLUE);
+            String choice = scanner.nextLine().trim();
+            System.out.print(RESET);
+
+            switch (choice) {
+                case "1":
+                    fetchPuzzleInput();
+                    break;
+                case "2":
+                    running = false;
+                    break;
+                default:
+                    System.out.println(RED + "Invalid option. Try again." + RESET);
+            }
+        }
+        System.out.println(GREEN + "Exiting Dev-Mode. Goodbye!" + RESET);
+    }
+
+    private static void fetchPuzzleInput() {
+        System.out.println(GREEN + "Fetching new puzzle input... (Feature coming soon!)" + RESET);
+    }
+
+    private static void visitorMode() {
+        System.out.println(GREEN + "Welcome to Advent of Code!" + RESET);
+        boolean running = true;
+        String year = "2024";
+        boolean testMode = false;
+
+        while (running) {
+            System.out.println(GREEN + "Main Menu:" + RESET);
+            System.out.println(RED + "1: Set Year (Current: " + year + ")" + RESET);
+            System.out.println(RED + "2: Set Test-Mode (Current: " + (testMode ? "Enabled" : "Disabled") + ")" + RESET);
+            System.out.println(RED + "3: Enter Main Loop" + RESET);
+            System.out.println(RED + "4: Quit" + RESET);
+            System.out.print(GREEN + "Select an option: " + RESET + BLUE);
+            String choice = scanner.nextLine().trim();
+            System.out.print(RESET);
+
+            switch (choice) {
+                case "1":
+                    year = setYear();
+                    break;
+                case "2":
+                    testMode = setTestMode();
+                    break;
+                case "3":
+                    mainLoop(year, testMode);
+                    break;
+                case "4":
+                    running = false;
+                    break;
+                default:
+                    System.out.println(RED + "Invalid option. Try again." + RESET);
+            }
+        }
+        System.out.println(GREEN + "Goodbye!" + RESET);
+    }
+
+    private static String setYear() {
+        System.out.print(GREEN + "Enter year " + RED + "(####): " + RESET + BLUE);
+        String year = scanner.nextLine().trim();
+        System.out.print(RESET);
+        return year;
+    }
+
+    private static boolean setTestMode() {
+        System.out.print(GREEN + "Enable Test-Mode? " + RED + "(yes/no): " + RESET + BLUE);
+        String response = scanner.nextLine().trim().toLowerCase();
+        System.out.print(RESET);
+        return response.equals("yes") || response.equals("y");
+    }
+
+    private static void mainLoop(String year, boolean testMode) {
+        boolean inLoop = true;
+
+        while (inLoop) {
+            System.out.println(GREEN + "Main Loop:" + RESET);
+            System.out.println(RED + "1: Enter Day to Execute" + RESET);
+            System.out.println(RED + "2: Go Back to Main Menu" + RESET);
+            System.out.println(RED + "3: Quit" + RESET);
+            System.out.print(GREEN + "Select an option: " + RESET + BLUE);
+            String choice = scanner.nextLine().trim();
+            System.out.print(RESET);
+
+            switch (choice) {
+                case "1":
+                    executeDay(year, testMode);
+                    break;
+                case "2":
+                    inLoop = false;
+                    break;
+                case "3":
+                    System.out.println(GREEN + "Goodbye!" + RESET);
+                    System.exit(0);
+                default:
+                    System.out.println(RED + "Invalid option. Try again." + RESET);
+            }
+        }
+    }
+
+    private static void executeDay(String year, boolean testMode) {
+        System.out.print(GREEN + "Enter Day " + RED + "(##): " + RESET + BLUE);
+        String day = scanner.nextLine().trim();
+        System.out.print(RESET);
+
+        String filePath = constructFilePath(year, day, testMode);
+        try {
+            String className = constructClassName(year, day);
+            Day dayInstance = createDayInstance(className);
+
+            System.out.println(GREEN + "Executing Day " + day + ":" + RESET);
+            System.out.println(GREEN + "Part 1: " + RESET + dayInstance.solvePart1(filePath));
+            System.out.println(GREEN + "Part 2: " + RESET + dayInstance.solvePart2(filePath));
+        } catch (ClassNotFoundException e) {
+            System.err.println(RED + "Day " + day + " of year " + year + " doesn't exist yet. Try again!" + RESET);
+        } catch (Exception e) {
+            System.err.println(RED + "Ouuups! Feli fricked up programming. Here's what went wrong:" + RESET);
+            e.printStackTrace();
+        }
+    }
+
+    private static String constructFilePath(String year, String day, boolean testMode) {
+        String mode = testMode ? "test" : "real";
+        return "input/year" + year + "/" + mode + "/Day" + day + ".txt";
+    }
+
+    private static String constructClassName(String year, String day) {
+        return "aoc.year" + year + ".Day" + day;
+    }
+
+    private static Day createDayInstance(String className) throws Exception {
+        Class<?> dayClass = Class.forName(className);
+        return (Day) dayClass.getDeclaredConstructor().newInstance();
+    }
 }
