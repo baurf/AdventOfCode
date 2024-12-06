@@ -56,4 +56,30 @@ public class Util {
             .collect(Collectors.toList()))
         .collect(Collectors.toList());
   }
+
+  public static char[][] parseToCharGrid(String resource) {
+    try {
+      List<String> lines = Files.readAllLines(getResource(resource).toPath());
+      char[][] grid = new char[lines.size()][];
+      for (int i = 0; i < lines.size(); i++) {
+        grid[i] = lines.get(i).toCharArray();
+      }
+      return grid;
+    } catch (IOException e) {
+      throw new IllegalStateException(e);
+    }
+  }
+
+  public static Grid<Character> generateGrid(List<String> lines, char defaultValue) {
+    Grid<Character> grid = new Grid<>(defaultValue);
+
+    for (int y = 0; y < lines.size(); y++) {
+      for (int x = 0; x < lines.get(y).length(); x++) {
+        char cell = lines.get(y).charAt(x);
+        grid.set(new Coord(x, y), cell);
+      }
+    }
+
+    return grid;
+  }
 }

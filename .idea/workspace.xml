@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f071b878-abbe-40a3-ae51-aeaff4685587" name="Changes" comment="" />
+    <list default="true" id="f071b878-abbe-40a3-ae51-aeaff4685587" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Direction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Grid.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/real/Day06.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/test/Day06.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day04.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day05.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day05.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Coord.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,12 +33,7 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="AdventOfCode" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -37,6 +45,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -60,12 +69,13 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="alwaysUpdateSnapshots" value="true" />
-        <option name="customMavenHome" value="$PROJECT_DIR$/../Tools/apache-maven-3.9.5" />
-        <option name="mavenHomeTypeForPersistence" value="CUSTOM" />
       </MavenGeneralSettings>
     </option>
     <option name="importingSettings">
@@ -99,6 +109,7 @@
     "Gradle.Build AdventOfCode.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "WebServerToolWindowFactoryState": "false",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Workarea/AdventOfCode",
@@ -111,7 +122,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -228,6 +239,7 @@
       <workItem from="1733323945715" duration="48000" />
       <workItem from="1733332115714" duration="6320000" />
       <workItem from="1733381952259" duration="9579000" />
+      <workItem from="1733469047149" duration="3901000" />
     </task>
     <servers />
   </component>

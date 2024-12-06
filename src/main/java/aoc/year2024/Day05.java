@@ -18,7 +18,7 @@ public class Day05 implements Day {
 
     return String.valueOf(part2.stream()
         .filter(it -> isCorrectOrder(it, hashmap))
-        .mapToInt(it -> getMidOfArray(it))
+        .mapToInt(Day05::getMidOfArray)
         .sum());
   }
 
@@ -32,7 +32,7 @@ public class Day05 implements Day {
     return String.valueOf(part2.stream()
         .filter(it -> !isCorrectOrder(it, hashmap))
         .map(it -> it.stream().sorted(sortByRules(hashmap)).toList())
-        .mapToInt(it -> getMidOfArray(it))
+        .mapToInt(Day05::getMidOfArray)
         .sum());
   }
 
