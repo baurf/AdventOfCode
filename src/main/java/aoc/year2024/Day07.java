@@ -17,7 +17,7 @@ public class Day07 implements Day {
             long targetValue = equation.get(0);
             List<Long> numbers = equation.subList(1, equation.size());
 
-            if (canProduceTarget(numbers, targetValue)) {
+            if (canProduceTarget(numbers, targetValue, false)) {
                 totalCalibrationResult += targetValue;
             }
         }
@@ -36,7 +36,7 @@ public class Day07 implements Day {
             long targetValue = equation.get(0);
             List<Long> numbers = equation.subList(1, equation.size());
 
-            if (canProduceTargetWithConcatenation(numbers, targetValue)) {
+            if (canProduceTarget(numbers, targetValue, true)) {
                 totalCalibrationResult += targetValue;
             }
         }
@@ -48,38 +48,35 @@ public class Day07 implements Day {
         return Util.splitAndMapToLong(input, ": | ");
     }
 
-    private boolean canProduceTargetWithConcatenation(List<Long> numbers, long targetValue) {
-        return checkCombinations(numbers, 0, numbers.get(0), targetValue);
+    private boolean canProduceTarget(List<Long> numbers, long targetValue, boolean allowConcatenation) {
+        return checkCombinations(numbers, 0, numbers.get(0), targetValue, allowConcatenation);
     }
 
-    private boolean checkCombinations(List<Long> numbers, int index, long currentValue, long targetValue) {
+    private boolean checkCombinations(List<Long> numbers, int index, long currentValue, long targetValue, boolean allowConcatenation) {
         if (index == numbers.size() - 1) {
             return currentValue == targetValue;
         }
 
         long nextNumber = numbers.get(index + 1);
 
-        // Try addition
-        if (checkCombinations(numbers, index + 1, currentValue + nextNumber, targetValue)) {
+        if (checkCombinations(numbers, index + 1, currentValue + nextNumber, targetValue, allowConcatenation)) {
             return true;
         }
 
-        // Try multiplication
-        if (checkCombinations(numbers, index + 1, currentValue * nextNumber, targetValue)) {
+        if (checkCombinations(numbers, index + 1, currentValue * nextNumber, targetValue, allowConcatenation)) {
             return true;
         }
 
-        // Try concatenation
-        long concatenatedValue = concatenate(currentValue, nextNumber);
-        return checkCombinations(numbers, index + 1, concatenatedValue, targetValue);
+        if (allowConcatenation) {
+            long concatenatedValue = concatenate(currentValue, nextNumber);
+            return checkCombinations(numbers, index + 1, concatenatedValue, targetValue, allowConcatenation);
+        }
+
+        return false;
     }
 
     private long concatenate(long a, long b) {
         String concatenated = String.valueOf(a) + b;
         return Long.parseLong(concatenated);
-    }
-
-    private boolean canProduceTarget(List<Long> numbers, long targetValue) {
-        return checkCombinations(numbers, 0, numbers.get(0), targetValue);
     }
 }

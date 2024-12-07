@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f071b878-abbe-40a3-ae51-aeaff4685587" name="Changes" comment="Added Day06, Part 1 okay, Part2 still very ugly">
-      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Field.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day07.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/real/Day07.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/test/Day07.txt" afterDir="false" />
+    <list default="true" id="f071b878-abbe-40a3-ae51-aeaff4685587" name="Changes" comment="Day 06 cleaned up Part2">
+      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/common/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Grid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day07.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +32,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand />
@@ -115,9 +124,9 @@
     "nodejs_package_manager_path": "npm",
     "onboarding.tips.debug.path": "C:/Workarea/AdventOfCode2024/src/main/java/org/example/Main.java",
     "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
+    "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "project.propVCSSupport.CommitDialog",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -134,7 +143,7 @@
       <recent name="aoc.year2024" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.aoc.Main (1)">
+  <component name="RunManager" selected="Gradle.AdventOfCode [run]">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
@@ -190,6 +199,50 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AdventOfCode [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="AdventOfCode [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -208,6 +261,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.AdventOfCode [run]" />
+        <item itemvalue="Gradle.AdventOfCode [build]" />
         <item itemvalue="Application.aoc.Main (1)" />
         <item itemvalue="Application.aoc.Main" />
         <item itemvalue="Application.Main" />
@@ -234,7 +289,7 @@
       <workItem from="1733323945715" duration="48000" />
       <workItem from="1733332115714" duration="6320000" />
       <workItem from="1733381952259" duration="9579000" />
-      <workItem from="1733469047149" duration="12350000" />
+      <workItem from="1733469047149" duration="27603000" />
     </task>
     <task id="LOCAL-00001" summary="Added Day06, Part 1 okay, Part2 still very ugly">
       <option name="closed" value="true" />
@@ -244,7 +299,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733473068400</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Day 06 cleaned up Part2">
+      <option name="closed" value="true" />
+      <created>1733587963089</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733587963089</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -263,7 +326,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Day06, Part 1 okay, Part2 still very ugly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Day06, Part 1 okay, Part2 still very ugly" />
+    <MESSAGE value="Day 06 cleaned up Part2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Day 06 cleaned up Part2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -273,12 +337,22 @@
           <line>16</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
         <watch expression="visited" />
+        <watch expression=" grid.move(currentDirection);" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

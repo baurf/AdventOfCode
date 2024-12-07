@@ -57,19 +57,6 @@ public class Util {
                 .collect(Collectors.toList());
     }
 
-    public static char[][] parseToCharGrid(String resource) {
-        try {
-            List<String> lines = Files.readAllLines(getResource(resource).toPath());
-            char[][] grid = new char[lines.size()][];
-            for (int i = 0; i < lines.size(); i++) {
-                grid[i] = lines.get(i).toCharArray();
-            }
-            return grid;
-        } catch (IOException e) {
-            throw new IllegalStateException(e);
-        }
-    }
-
     public static List<List<Long>> splitAndMapToLong(List<String> strings, String regex) {
         return strings.stream()
                 .map(it -> Arrays.stream(it.split(regex))
@@ -78,9 +65,9 @@ public class Util {
                 .collect(Collectors.toList());
     }
 
-    public static Grid<Character> generateGrid(String resource, char defaultValue) {
+    public static Grid<Character> generateGrid(String resource) {
         List<String> lines = getResourceAsStringList(resource);
-        Grid<Character> grid = new Grid<>(map, defaultValue, currentPos);
+        Grid<Character> grid = new Grid<>();
 
         for (int y = 0; y < lines.size(); y++) {
             for (int x = 0; x < lines.get(y).length(); x++) {

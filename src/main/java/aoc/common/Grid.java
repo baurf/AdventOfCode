@@ -6,57 +6,65 @@ import java.util.List;
 import java.util.Map;
 
 public class Grid<T> {
-    private final Map<Coord, T> values;
-    private final Map<Coord, Boolean> visited;
-
-    private final Map<Coord, Field<T>> map;
-    private final T defaultValue;
+    private final Map<Coord, Field<T>> map = new HashMap<>();
     private Coord currentPos;
 
-    public Grid(Map<Coord, Field<T>> map, T defaultValue, Coord currentPos) {
-        this.map = map;
-        this.currentPos = currentPos;
-        this.values = new HashMap<>();
-        this.visited = new HashMap<>();
-        this.defaultValue = defaultValue;
+    public Grid() {
     }
 
     public T get(Coord coord) {
-        return values.getOrDefault(coord, defaultValue);
+        Field<T> field = map.get(coord);
+        return (field != null) ? field.getValue() : null;
     }
 
     public void set(Coord coord, T value) {
-        values.put(coord, value);
-    }
-
-    public boolean isVisited(Coord coord) {
-        return visited.getOrDefault(coord, false);
-    }
-
-    public Coord getCurrentPos() {
-        return currentPos;
+        map.put(coord, new Field<>(value, isVisited(coord)));
     }
 
     public void setCurrentPos(Coord currentPos) {
         this.currentPos = currentPos;
     }
 
+    public boolean isVisited(Coord coord) {
+        Field<T> field = map.get(coord);
+        return (field != null) && field.isVisited();
+    }
+
     public void visit(Coord coord) {
-        visited.put(coord, true);
+        Field<T> field = map.get(coord);
+        if (field != null) {
+            field.setVisited(true);
+        } else {
+            throw new IllegalArgumentException("Das Feld gits ned imfall");
+        }
+
     }
 
-    public void clearVisited(Coord coord) {
-        visited.put(coord, false);
+    public void move(Direction direction) {
+        Coord nextPos = new Coord(currentPos.x() + direction.dx(), currentPos.y() + direction.dy());
+        visit(nextPos);
+        currentPos = nextPos;
     }
 
-    public Coord move(Coord current, Direction direction) {
-        return new Coord(current.x() + direction.dx(), current.y() + direction.dy());
+    public List<Coord> getVisitedFields() {
+        return map.entrySet().stream()
+                .filter(entry -> entry.getValue().isVisited())
+                .map(Map.Entry::getKey)
+                .toList();
+    }
+
+    public Coord getNextCoord(Direction direction) {
+        return new Coord(currentPos.x() + direction.dx(), currentPos.y() + direction.dy());
+    }
+
+    public boolean isNextMoveLegal(Direction direction) {
+        return map.containsKey(getNextCoord(direction));
     }
 
     public List<Coord> getCoordOfValue(T value) {
         List<Coord> coords = new ArrayList<>();
-        for (Map.Entry<Coord, T> entry : values.entrySet()) {
-            if (entry.getValue().equals(value)) {
+        for (Map.Entry<Coord, Field<T>> entry : map.entrySet()) {
+            if (entry.getValue().getValue().equals(value)) {
                 coords.add(entry.getKey());
             }
         }
@@ -64,9 +72,8 @@ public class Grid<T> {
     }
 
     public boolean contains(Coord coord) {
-        return values.containsKey(coord);
+        return map.containsKey(coord);
     }
-
 
     public void print(int minX, int maxX, int minY, int maxY) {
         for (int y = minY; y <= maxY; y++) {
@@ -80,5 +87,9 @@ public class Grid<T> {
             }
             System.out.println();
         }
+    }
+
+    public Coord getCurrentPos() {
+        return this.currentPos;
     }
 }

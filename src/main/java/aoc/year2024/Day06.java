@@ -18,52 +18,46 @@ public class Day06 implements Day {
 
     @Override
     public String solvePart1(String filePath) {
-        Grid<Character> grid = Util.generateGrid(filePath, '.');
+        Grid<Character> grid = Util.generateGrid(filePath);
         GuardPosition guardPosition = getGuardPosition(grid);
 
         if (guardPosition == null) {
-            throw new RuntimeException("Couldn't find initial Position!");
+            throw new IllegalArgumentException("Couldn't find initial Position!");
         }
 
-        grid.set(guardPosition.coordinates(), '.');
+        doInitialSetup(grid, guardPosition);
 
-        Set<Coord> visitedCoords = new HashSet<>();
-        simulateGuardMovementForPart1(guardPosition, grid, visitedCoords);
+        simulateGuardMovement(grid, guardPosition, false);
 
-        for (Coord coord : visitedCoords) {
-            grid.set(coord, 'X');
-        }
-        return String.valueOf(visitedCoords.size());
+        return String.valueOf(grid.getVisitedFields().size());
     }
 
     @Override
     public String solvePart2(String filePath) {
-        Grid<Character> grid = Util.generateGrid(filePath, '.');
+        Grid<Character> grid = Util.generateGrid(filePath);
         GuardPosition initialGuardPosition = getGuardPosition(grid);
 
         if (initialGuardPosition == null) {
-            throw new RuntimeException("Couldn't find initial Position!");
+            throw new IllegalArgumentException("Couldn't find initial Position!");
         }
 
-        grid.set(initialGuardPosition.coordinates(), '.');
+        doInitialSetup(grid, initialGuardPosition);
 
-        Set<Coord> visitedCoords = new HashSet<>();
-        simulateGuardMovementForPart1(initialGuardPosition, grid, visitedCoords);
+        simulateGuardMovement(grid, initialGuardPosition, false);
 
         int numOfLoopPositions = 0;
 
-        for (Coord coord : visitedCoords) {
+        for (Coord coord : grid.getVisitedFields()) {
             if (coord.equals(initialGuardPosition.coordinates())) {
-                continue; // Skip the starting position
+                continue;
             }
 
-            Grid<Character> gridWithBlockage = Util.generateGrid(filePath, '.');
+            Grid<Character> gridWithBlockage = Util.generateGrid(filePath);
             gridWithBlockage.set(initialGuardPosition.coordinates(), '.');
             gridWithBlockage.set(coord, '#');
+            gridWithBlockage.setCurrentPos(initialGuardPosition.coordinates());
 
-            Set<GuardPosition> testVisited = new HashSet<>();
-            boolean loopDetected = simulateGuardMovementForPart2(initialGuardPosition, gridWithBlockage, testVisited);
-
+            boolean loopDetected = simulateGuardMovement(gridWithBlockage, initialGuardPosition, true);
             if (loopDetected) {
                 numOfLoopPositions++;
             }
@@ -72,63 +66,39 @@ public class Day06 implements Day {
         return String.valueOf(numOfLoopPositions);
     }
 
-    private static void simulateGuardMovementForPart1(
-            GuardPosition guardPosition,
-            Grid<Character> grid,
-            Set<Coord> visitedCoords
-    ) {
-        Coord currentPos = guardPosition.coordinates();
-        Direction currentDirection = guardPosition.direction();
-
-        visitedCoords.add(currentPos);
-
-        while (true) {
-            Coord nextPos = currentDirection.moveStraight(currentPos);
-
-            if (!grid.contains(nextPos)) {
-                break;
-            }
-
-            char nextCell = grid.get(nextPos);
-
-            if (nextCell == '.') {
-                currentPos = nextPos;
-                visitedCoords.add(currentPos);
-            } else if (nextCell == '#') {
-                currentDirection = currentDirection.turnRight();
-            } else {
-                break;
-            }
-        }
+    private static void doInitialSetup(Grid<Character> grid, GuardPosition initialGuardPosition) {
+        grid.set(initialGuardPosition.coordinates(), '.');
+        grid.setCurrentPos(initialGuardPosition.coordinates());
+        grid.visit(initialGuardPosition.coordinates);
     }
 
-    private static boolean simulateGuardMovementForPart2(
-            GuardPosition guardPosition,
+    private static boolean simulateGuardMovement(
             Grid<Character> grid,
-            Set<GuardPosition> visited
+            GuardPosition guardPosition,
+            boolean detectLoop
     ) {
-        Coord currentPos = guardPosition.coordinates();
         Direction currentDirection = guardPosition.direction();
 
-        visited.add(guardPosition);
+        Set<GuardPosition> visitedPositions = detectLoop ? new HashSet<>() : null;
+        if (visitedPositions != null) {
+            visitedPositions.add(guardPosition);
+        }
 
-        while (true) {
-            Coord nextPos = currentDirection.moveStraight(currentPos);
+        while (grid.isNextMoveLegal(currentDirection)) {
+            Coord nextPos = grid.getNextCoord(currentDirection);
             char nextCell = grid.get(nextPos);
 
             if (nextCell == '.') {
-                currentPos = nextPos;
-                GuardPosition currentGuardPos = new GuardPosition(currentPos, currentDirection);
-                if (!visited.add(currentGuardPos)) {
-                    return true;
+                grid.move(currentDirection);
+                if (detectLoop) {
+                    GuardPosition currentGuardPos = new GuardPosition(grid.getCurrentPos(), currentDirection);
+                    if (!visitedPositions.add(currentGuardPos)) {
+                        return true;
+                    }
                 }
             } else if (nextCell == '#') {
                 currentDirection = currentDirection.turnRight();
             } else {
-                break;
-            }
-
-            if (!grid.contains(nextPos)) {
                 break;
             }
         }
