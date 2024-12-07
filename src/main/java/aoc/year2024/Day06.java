@@ -18,30 +18,99 @@ public class Day06 implements Day {
 
     @Override
     public String solvePart1(String filePath) {
-        List<String> lines = Util.getResourceAsStringList(filePath);
-        Grid<Character> grid = Util.generateGrid(lines, '.');
+        Grid<Character> grid = Util.generateGrid(filePath, '.');
+        GuardPosition guardPosition = getGuardPosition(grid);
 
-        Coord initialPos = null;
-        Direction initialDirection = null;
-
-        for (char dirChar : DIRECTION_MAP.keySet()) {
-            List<Coord> matches = grid.getCoordOfValue(dirChar);
-            if (!matches.isEmpty()) {
-                initialPos = matches.get(0); // Assume only one starting position
-                initialDirection = DIRECTION_MAP.get(dirChar);
-                break;
-            }
-        }
-
-        if (initialPos == null || initialDirection == null) {
+        if (guardPosition == null) {
             throw new RuntimeException("Couldn't find initial Position!");
         }
 
+        grid.set(guardPosition.coordinates(), '.');
 
-        Coord currentPos = initialPos;
-        Direction currentDirection = initialDirection;
-        Set<Coord> visited = new HashSet<>();
-        visited.add(currentPos);
+        Set<Coord> visitedCoords = new HashSet<>();
+        simulateGuardMovementForPart1(guardPosition, grid, visitedCoords);
+
+        for (Coord coord : visitedCoords) {
+            grid.set(coord, 'X');
+        }
+        return String.valueOf(visitedCoords.size());
+    }
+
+    @Override
+    public String solvePart2(String filePath) {
+        Grid<Character> grid = Util.generateGrid(filePath, '.');
+        GuardPosition initialGuardPosition = getGuardPosition(grid);
+
+        if (initialGuardPosition == null) {
+            throw new RuntimeException("Couldn't find initial Position!");
+        }
+
+        grid.set(initialGuardPosition.coordinates(), '.');
+
+        Set<Coord> visitedCoords = new HashSet<>();
+        simulateGuardMovementForPart1(initialGuardPosition, grid, visitedCoords);
+
+        int numOfLoopPositions = 0;
+
+        for (Coord coord : visitedCoords) {
+            if (coord.equals(initialGuardPosition.coordinates())) {
+                continue; // Skip the starting position
+            }
+
+            Grid<Character> gridWithBlockage = Util.generateGrid(filePath, '.');
+            gridWithBlockage.set(initialGuardPosition.coordinates(), '.');
+            gridWithBlockage.set(coord, '#');
+
+            Set<GuardPosition> testVisited = new HashSet<>();
+            boolean loopDetected = simulateGuardMovementForPart2(initialGuardPosition, gridWithBlockage, testVisited);
+
+            if (loopDetected) {
+                numOfLoopPositions++;
+            }
+        }
+
+        return String.valueOf(numOfLoopPositions);
+    }
+
+    private static void simulateGuardMovementForPart1(
+            GuardPosition guardPosition,
+            Grid<Character> grid,
+            Set<Coord> visitedCoords
+    ) {
+        Coord currentPos = guardPosition.coordinates();
+        Direction currentDirection = guardPosition.direction();
+
+        visitedCoords.add(currentPos);
+
+        while (true) {
+            Coord nextPos = currentDirection.moveStraight(currentPos);
+
+            if (!grid.contains(nextPos)) {
+                break;
+            }
+
+            char nextCell = grid.get(nextPos);
+
+            if (nextCell == '.') {
+                currentPos = nextPos;
+                visitedCoords.add(currentPos);
+            } else if (nextCell == '#') {
+                currentDirection = currentDirection.turnRight();
+            } else {
+                break;
+            }
+        }
+    }
+
+    private static boolean simulateGuardMovementForPart2(
+            GuardPosition guardPosition,
+            Grid<Character> grid,
+            Set<GuardPosition> visited
+    ) {
+        Coord currentPos = guardPosition.coordinates();
+        Direction currentDirection = guardPosition.direction();
+
+        visited.add(guardPosition);
 
         while (true) {
             Coord nextPos = currentDirection.moveStraight(currentPos);
@@ -49,7 +118,10 @@ public class Day06 implements Day {
 
             if (nextCell == '.') {
                 currentPos = nextPos;
-                visited.add(currentPos);
+                GuardPosition currentGuardPos = new GuardPosition(currentPos, currentDirection);
+                if (!visited.add(currentGuardPos)) {
+                    return true;
+                }
             } else if (nextCell == '#') {
                 currentDirection = currentDirection.turnRight();
             } else {
@@ -61,87 +133,19 @@ public class Day06 implements Day {
             }
         }
 
-        return String.valueOf(visited.size());
+        return false;
     }
 
-    @Override
-    public String solvePart2(String filePath) {
-        List<String> lines = Util.getResourceAsStringList(filePath);
-
-        char[][] grid = Util.parseToCharGrid(filePath);
-
-        int guardRow = 0, guardCol = 0;
-        for (int r = 0; r < grid.length; r++) {
-            for (int c = 0; c < grid[r].length; c++) {
-                if ("^v<>".indexOf(grid[r][c]) != -1) {
-                    guardRow = r;
-                    guardCol = c;
-                }
+    private static GuardPosition getGuardPosition(Grid<Character> grid) {
+        for (char dirChar : DIRECTION_MAP.keySet()) {
+            List<Coord> matches = grid.getCoordOfValue(dirChar);
+            if (!matches.isEmpty()) {
+                return new GuardPosition(matches.get(0), DIRECTION_MAP.get(dirChar));
             }
         }
-
-        Set<String> validPositions = new HashSet<>();
-        for (int r = 0; r < grid.length; r++) {
-            for (int c = 0; c < grid[r].length; c++) {
-                if (grid[r][c] == '.' && !(r == guardRow && c == guardCol)) {
-                    grid[r][c] = '#';
-
-                    if (isLoopingPath(grid)) {
-                        validPositions.add(r + "," + c);
-                    }
-
-                    grid[r][c] = '.';
-                }
-            }
-        }
-
-        return String.valueOf(validPositions.size());
+        return null;
     }
 
-    private boolean isLoopingPath(char[][] grid) {
-        // Directions: up, right, down, left
-        int[][] directions = {{-1, 0}, {0, 1}, {1, 0}, {0, -1}};
-        char[] directionChars = {'^', '>', 'v', '<'};
-
-        // Find the guard's initial position and direction
-        int guardRow = 0, guardCol = 0, directionIndex = 0;
-        for (int r = 0; r < grid.length; r++) {
-            for (int c = 0; c < grid[r].length; c++) {
-                for (int d = 0; d < directionChars.length; d++) {
-                    if (grid[r][c] == directionChars[d]) {
-                        guardRow = r;
-                        guardCol = c;
-                        directionIndex = d;
-                        break;
-                    }
-                }
-            }
-        }
-
-        Set<String> visitedStates = new HashSet<>();
-        String initialState = guardRow + "," + guardCol + "," + directionIndex;
-        visitedStates.add(initialState);
-
-        while (true) {
-            int nextRow = guardRow + directions[directionIndex][0];
-            int nextCol = guardCol + directions[directionIndex][1];
-
-            if (nextRow < 0 || nextRow >= grid.length || nextCol < 0 || nextCol >= grid[0].length) {
-                return false; // No loop; the guard exits the map
-            }
-
-            if (grid[nextRow][nextCol] == '#') {
-                directionIndex = (directionIndex + 1) % 4;
-            } else {
-                guardRow = nextRow;
-                guardCol = nextCol;
-            }
-
-            String state = guardRow + "," + guardCol + "," + directionIndex;
-            if (visitedStates.contains(state)) {
-                return true;
-            }
-            visitedStates.add(state);
-        }
+    private record GuardPosition(Coord coordinates, Direction direction) {
     }
 }

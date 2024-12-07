@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f071b878-abbe-40a3-ae51-aeaff4685587" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Direction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Grid.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/real/Day06.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/test/Day06.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f071b878-abbe-40a3-ae51-aeaff4685587" name="Changes" comment="Added Day06, Part 1 okay, Part2 still very ugly">
+      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Field.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day07.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/real/Day07.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/test/Day07.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day04.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day04.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day05.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day05.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Coord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +39,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -239,8 +234,17 @@
       <workItem from="1733323945715" duration="48000" />
       <workItem from="1733332115714" duration="6320000" />
       <workItem from="1733381952259" duration="9579000" />
-      <workItem from="1733469047149" duration="3901000" />
+      <workItem from="1733469047149" duration="12350000" />
     </task>
+    <task id="LOCAL-00001" summary="Added Day06, Part 1 okay, Part2 still very ugly">
+      <option name="closed" value="true" />
+      <created>1733473068400</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733473068400</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,6 +261,10 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Added Day06, Part 1 okay, Part2 still very ugly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Day06, Part 1 okay, Part2 still very ugly" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
@@ -269,8 +277,7 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
-        <watch expression="integers.get(j)" />
-        <watch expression="integers.get(k)" />
+        <watch expression="visited" />
       </configuration>
     </watches-manager>
   </component>

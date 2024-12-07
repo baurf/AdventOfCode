@@ -8,12 +8,14 @@ import java.util.Map;
 public class Grid<T> {
     private final Map<Coord, T> values;
     private final Map<Coord, Boolean> visited;
+
+    private final Map<Coord, Field<T>> map;
     private final T defaultValue;
-
-
     private Coord currentPos;
 
-    public Grid(T defaultValue) {
+    public Grid(Map<Coord, Field<T>> map, T defaultValue, Coord currentPos) {
+        this.map = map;
+        this.currentPos = currentPos;
         this.values = new HashMap<>();
         this.visited = new HashMap<>();
         this.defaultValue = defaultValue;
