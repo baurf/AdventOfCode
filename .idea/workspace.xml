@@ -5,19 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f071b878-abbe-40a3-ae51-aeaff4685587" name="Changes" comment="Day 06 cleaned up Part2">
-      <change afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day08.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/real/Day08.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/test/Day08.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/aoc/common/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Grid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day07.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day07.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,33 +96,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.aoc.Main.executor": "Run",
-    "Gradle.AdventOfCode [:aoc.Main.main()].executor": "Debug",
-    "Gradle.AdventOfCode2024 [:aoc.Main.main()].executor": "Run",
-    "Gradle.AdventOfCode2024 [:org.example.Main.main()].executor": "Run",
-    "Gradle.Build AdventOfCode.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Workarea/AdventOfCode",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Workarea/AdventOfCode2024/src/main/java/org/example/Main.java",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.aoc.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AdventOfCode [:aoc.Main.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.AdventOfCode2024 [:aoc.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.AdventOfCode2024 [:org.example.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build AdventOfCode.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Workarea/AdventOfCode&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Workarea/AdventOfCode2024/src/main/java/org/example/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.fonts.default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Workarea\AdventOfCode2024\src\main\resources\input\test" />
@@ -290,6 +283,7 @@
       <workItem from="1733332115714" duration="6320000" />
       <workItem from="1733381952259" duration="9579000" />
       <workItem from="1733469047149" duration="27603000" />
+      <workItem from="1733604546899" duration="3904000" />
     </task>
     <task id="LOCAL-00001" summary="Added Day06, Part 1 okay, Part2 still very ugly">
       <option name="closed" value="true" />
@@ -346,8 +340,7 @@
     </breakpoint-manager>
     <watches-manager>
       <configuration name="GradleRunConfiguration">
-        <watch expression="visited" />
-        <watch expression=" grid.move(currentDirection);" />
+        <watch expression="grid.entrySet()" />
       </configuration>
     </watches-manager>
   </component>
