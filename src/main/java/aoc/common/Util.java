@@ -29,6 +29,18 @@ public class Util {
         }
     }
 
+    public static List<Integer> getResourceAsIntegerList(String resource) {
+        try {
+            String content = Files.readString(getResource(resource).toPath()); // Read the entire file content
+            return content.chars() // Get a stream of characters
+                    .mapToObj(c -> Character.digit(c, 10)) // Convert each character to its integer value
+                    .collect(Collectors.toList()); // Collect the integers into a list
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+
     public static List<String> getResourceAsStringList(String resource) {
         try {
             return Files.readAllLines(getResource(resource).toPath());

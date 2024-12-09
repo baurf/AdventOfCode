@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f071b878-abbe-40a3-ae51-aeaff4685587" name="Changes" comment="Day 06 cleaned up Part2">
-      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day08.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/real/Day08.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/test/Day08.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="f071b878-abbe-40a3-ae51-aeaff4685587" name="Changes" comment="Day 08 ugly">
+      <change afterPath="$PROJECT_DIR$/src/main/java/aoc/year2024/Day09.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/real/Day09.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/real/gg/Day06.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/test/Day09.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/common/Grid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Grid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/aoc/common/Util.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/input/year2024/real/Day06.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/input/year2024/real/Day06.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,6 +130,7 @@
       <recent name="C:\Workarea\AdventOfCode2024\src\main\resources\input\real" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Workarea\AdventOfCode\src\main\resources\input\year2024\real\gg" />
       <recent name="C:\Workarea\AdventOfCode\src\main\java\aoc\year2024" />
       <recent name="C:\Workarea\AdventOfCode2024\src\main\resources\input\2024" />
     </key>
@@ -283,7 +285,7 @@
       <workItem from="1733332115714" duration="6320000" />
       <workItem from="1733381952259" duration="9579000" />
       <workItem from="1733469047149" duration="27603000" />
-      <workItem from="1733604546899" duration="3904000" />
+      <workItem from="1733604546899" duration="13771000" />
     </task>
     <task id="LOCAL-00001" summary="Added Day06, Part 1 okay, Part2 still very ugly">
       <option name="closed" value="true" />
@@ -301,7 +303,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733587963089</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Day 08 ugly">
+      <option name="closed" value="true" />
+      <created>1733674309141</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733674309141</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,7 +331,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added Day06, Part 1 okay, Part2 still very ugly" />
     <MESSAGE value="Day 06 cleaned up Part2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Day 06 cleaned up Part2" />
+    <MESSAGE value="Day 08 ugly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Day 08 ugly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -331,18 +342,8 @@
           <line>16</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/aoc/year2024/Day06.java</url>
-          <line>88</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="GradleRunConfiguration">
-        <watch expression="grid.entrySet()" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
