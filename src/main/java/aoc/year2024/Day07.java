@@ -6,21 +6,16 @@ import aoc.common.Util;
 import java.util.List;
 
 public class Day07 implements Day {
+
     @Override
     public String solvePart1(String filePath) {
         List<String> input = Util.getResourceAsStringList(filePath);
         List<List<Long>> equations = parseInput(input);
 
-        long totalCalibrationResult = 0;
-
-        for (List<Long> equation : equations) {
-            long targetValue = equation.get(0);
-            List<Long> numbers = equation.subList(1, equation.size());
-
-            if (canProduceTarget(numbers, targetValue, false)) {
-                totalCalibrationResult += targetValue;
-            }
-        }
+        long totalCalibrationResult = equations.stream()
+                .filter(equation -> canProduceTarget(equation, false))
+                .mapToLong(equation -> equation.get(0))
+                .sum();
 
         return String.valueOf(totalCalibrationResult);
     }
@@ -30,16 +25,10 @@ public class Day07 implements Day {
         List<String> input = Util.getResourceAsStringList(filePath);
         List<List<Long>> equations = parseInput(input);
 
-        long totalCalibrationResult = 0;
-
-        for (List<Long> equation : equations) {
-            long targetValue = equation.get(0);
-            List<Long> numbers = equation.subList(1, equation.size());
-
-            if (canProduceTarget(numbers, targetValue, true)) {
-                totalCalibrationResult += targetValue;
-            }
-        }
+        long totalCalibrationResult = equations.stream()
+                .filter(equation -> canProduceTarget(equation, true))
+                .mapToLong(equation -> equation.get(0))
+                .sum();
 
         return String.valueOf(totalCalibrationResult);
     }
@@ -48,7 +37,9 @@ public class Day07 implements Day {
         return Util.splitAndMapToLong(input, ": | ");
     }
 
-    private boolean canProduceTarget(List<Long> numbers, long targetValue, boolean allowConcatenation) {
+    private boolean canProduceTarget(List<Long> equation, boolean allowConcatenation) {
+        long targetValue = equation.get(0);
+        List<Long> numbers = equation.subList(1, equation.size());
         return checkCombinations(numbers, 0, numbers.get(0), targetValue, allowConcatenation);
     }
 
@@ -76,7 +67,6 @@ public class Day07 implements Day {
     }
 
     private long concatenate(long a, long b) {
-        String concatenated = String.valueOf(a) + b;
-        return Long.parseLong(concatenated);
+        return Long.parseLong(a + String.valueOf(b));
     }
 }
