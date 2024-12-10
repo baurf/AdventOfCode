@@ -38,6 +38,7 @@ public class Grid<T> {
     }
 
     public void move(Direction direction) {
+
         Coord nextPos = new Coord(currentPos.x() + direction.dx(), currentPos.y() + direction.dy());
         visit(nextPos);
         currentPos = nextPos;
